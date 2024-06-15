@@ -91,7 +91,7 @@ onChange((files) => {
 async function savePost() {
   try {
     post.value.owner = user.value.id;
-    const record = await pb.collection("posts").create(post.value);
+    const record = await pb.collection("uploads").create(post.value);
     console.log(record);
     toast.add({
       title: "Post created successfully",
@@ -110,9 +110,9 @@ const {
   refresh,
   pending,
 } = await useAsyncData(
-  "posts",
+  "uploads",
   async () => {
-    const records = await pb.collection("posts").getFullList({
+    const records = await pb.collection("uploads").getFullList({
       sort: "-created",
     });
     return records;
