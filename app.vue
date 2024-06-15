@@ -1,5 +1,5 @@
 <template>
-  <div class="py-12">
+  <div class="">
     <UContainer>
       <NuxtLoadingIndicator />
       <NuxtPage />

@@ -15,7 +15,7 @@
           <div v-for="post in uploads" :key="post.id" class="flex justify-center">
             <div v-if="post.video" class="flex flex-col items-center w-full max-w-md">
               <video class="w-full h-auto max-h-[75vh] object-cover rounded-lg" :src="getFileUrl(post)"
-                controls></video>
+                controls loop></video>
             </div>
           </div>
         </div>
