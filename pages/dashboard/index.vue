@@ -12,7 +12,7 @@
       </div>
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
-          <div v-for="post in posts" :key="post.id" class="flex justify-center">
+          <div v-for="post in uploads" :key="post.id" class="flex justify-center">
             <div v-if="post.video" class="flex flex-col items-center w-full max-w-md">
               <video class="w-full h-auto max-h-[75vh] object-cover rounded-lg" :src="getFileUrl(post)"
                 controls></video>
@@ -106,7 +106,7 @@ async function savePost() {
 }
 
 const {
-  data: posts,
+  data: uploads,
   refresh,
   pending,
 } = await useAsyncData(
@@ -126,15 +126,15 @@ onMounted(() => {
   pb.collection("uploads").subscribe("*", function (e) {
     if (e.action === "create") {
       console.log("new post created");
-      posts.value = [e.record, ...posts.value];
+      uploads.value = [e.record, ...uploads.value];
     }
     if (e.action === "delete") {
       console.log("post deleted");
-      posts.value = posts.value.filter((post) => post.id !== e.record.id);
+      uploads.value = uploads.value.filter((post) => post.id !== e.record.id);
     }
     if (e.action === "update") {
       console.log("post updated");
-      posts.value = posts.value.map((post) => {
+      uploads.value = uploads.value.map((post) => {
         if (post.id === e.record.id) {
           return e.record;
         }
